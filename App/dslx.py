@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 """
-This script is designed to perform a prediction of dyslexia in children.
+This script is designed to perform a prediction of dyslexia in children. 
+A part of Dyslexia Project led in cooperation with Nencki Institute of Experimental Biology, Warsaw, Poland.
 """
 
 __author__ = "Aleksander Molak"
