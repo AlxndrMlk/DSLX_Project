@@ -16,7 +16,7 @@ __status__ = "Testing"
 
 import numpy as np
 
-hello_list = ['Jak się masz?', 'Jak Ci mija dzień?', 'Dzień dobry!', 'Cześć!', 'Hej! Jak tam u Ciebie?']
+hello_list = ['Jak się masz?', 'Jak Ci mija dzień?', 'Dzień dobry!', 'Cześć!']
 
 hello_phrase = hello_list[np.random.randint(5)]
 
@@ -79,9 +79,9 @@ if 'Unnamed: 0' in X_test.columns:
 contains_ID = False
 
 if 'ID' in X_test.columns:
-    contains_ID == True
-    X_test = X_test.drop('ID', axis=1)
+    contains_ID = True
     ID = X_test.ID
+    X_test = X_test.drop('ID', axis=1)
 
 X_cols = X_test.columns
 
@@ -123,7 +123,7 @@ print('Faza 2 predykcji: sukces!\n\n')
 # Join the frames
 X_test['Predykcja'] = meta_pred
 if contains_ID == True:
-    X_test = ID.join(X_test)
+    X_test = pd.DataFrame(ID).join(X_test)
 
 # Generate a unique filename
 filename = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_DslxApp_Prediction.csv'
@@ -138,4 +138,4 @@ goodbye_list = ['Do zobaczenia!', 'Miłego dnia!']
 goodbye_phrase = goodbye_list[np.random.randint(2)]
 
 # Say goodbye
-print(f'\n\nDzięki! {goodbye_phrase} :)\n\n')
+print(f'\n\n{goodbye_phrase}\n\n')
