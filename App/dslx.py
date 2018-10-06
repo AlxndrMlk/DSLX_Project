@@ -9,16 +9,18 @@ __author__ = "Aleksander Molak"
 __copyright__ = "Copyright 2018, DSLX Project"
 __credits__ = ["Aleksander Molak"]
 __license__ = "MIT"
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __maintainer__ = "Aleksander Molak, Katarzyna Chyl"
 __email__ = "aleksnader.molak@gmail.com"
 __status__ = "Testing"
 
 import numpy as np
 
+print(f'\nDslxApp v. {__version__} Testing -- AM tested -> stable @ 2018-10-06\n\n')
+
 hello_list = ['Jak się masz?', 'Jak Ci mija dzień?', 'Dzień dobry!', 'Cześć!']
 
-hello_phrase = hello_list[np.random.randint(5)]
+hello_phrase = hello_list[np.random.randint(4)]
 
 print(f'\n\n{hello_phrase} :)\n\n\nWczytuję moduły...\n\n')
 
@@ -58,7 +60,7 @@ y_svc = y_svc.values.ravel()
 # Initialize the classifiers
 print('Inicjalizuję modele...\n\n')
 gbc = GradientBoostingClassifier(**gbc_params, random_state=4)
-svc = SVC(**svc_params)
+svc = SVC(**svc_params, random_state=12345)
 
 # Fit the classifiers
 gbc.fit(X_gbc, y_gbc)
