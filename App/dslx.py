@@ -16,7 +16,7 @@ __status__ = "Testing"
 
 import numpy as np
 
-print(f'\nDslxApp v. {__version__} Testing -- AM tested -> stable @ 2018-10-06\n\n')
+print(f'\nDslxApp v. {__version__} {__status__} -- AM tested -> stable @ 2018-10-06\n\n')
 
 hello_list = ['Jak się masz?', 'Jak Ci mija dzień?', 'Dzień dobry!', 'Cześć!']
 
@@ -104,7 +104,7 @@ else:
 
 # Scale the Data
 print('Przekształcam dane...\n\n')
-X_test_n = scaler1.fit_transform(X_test)
+X_test_n = scaler1.transform(X_test)
 print('Dane przekształcone!\n\n')
 
 # Predict probas
