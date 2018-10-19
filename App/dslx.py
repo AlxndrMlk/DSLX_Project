@@ -71,6 +71,7 @@ print('Modele zainicjalizowane!\n\n')
 file = sys.argv[1]
 
 X_test = pd.read_csv(file)
+X_test = X_test.dropna(axis=0)
 
 # Check and transform the data
 print('Sprawdzam strukturę danych...\n\n')
