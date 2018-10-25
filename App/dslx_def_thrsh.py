@@ -18,15 +18,26 @@ import numpy as np
 
 print(f'\nDslxApp v. {__version__} {__status__} -- AM tested -> stable @ 2018-10-25\n\n')
 
+# Import libs 1
+import sys
+
+# Read-in the threshold value
+try:
+    threshold = float(sys.argv[2])
+except IndexError:
+    threshold = .5
+
+if (threshold < 0) or (threshold > 1):
+    raise ValueError('Your threshold is <0 or >1. Threshold only takes values between 0 and 1')
+
+# Define intro message
 hello_list = ['Jak się masz?', 'Jak Ci mija dzień?', 'Dzień dobry!', 'Cześć!']
 
 hello_phrase = hello_list[np.random.randint(4)]
 
 print(f'\n\n{hello_phrase} :)\n\n\nWczytuję moduły...\n\n')
 
-
-# Import libs
-import sys
+# Import libs 2
 import pickle
 
 import pandas as pd
@@ -72,15 +83,6 @@ file = sys.argv[1]
 
 X_test = pd.read_csv(file)
 X_test = X_test.dropna(axis=0)
-
-# Read-in the threshold value
-try:
-    threshold = float(sys.argv[2])
-except IndexError:
-    threshold = .5
-
-if (threshold < 0) or (threshold > 1):
-    raise ValueError('Your threshold is <0 or >1. Threshold only takes values between 0 and 1')
 
 # Check and transform the data
 print('Sprawdzam strukturę danych...\n\n')
