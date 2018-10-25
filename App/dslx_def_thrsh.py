@@ -9,14 +9,14 @@ __author__ = "Aleksander Molak"
 __copyright__ = "Copyright 2018, DSLX Project"
 __credits__ = ["Aleksander Molak"]
 __license__ = "MIT"
-__version__ = "1.1.0"
+__version__ = "1.1.3"
 __maintainer__ = "Aleksander Molak, Katarzyna Chyl"
 __email__ = "aleksnader.molak@gmail.com"
 __status__ = "Testing"
 
 import numpy as np
 
-print(f'\nDslxApp v. {__version__} {__status__} -- AM tested -> stable @ 2018-10-06\n\n')
+print(f'\nDslxApp v. {__version__} {__status__} -- AM tested -> stable @ 2018-10-25\n\n')
 
 hello_list = ['Jak się masz?', 'Jak Ci mija dzień?', 'Dzień dobry!', 'Cześć!']
 
@@ -73,6 +73,15 @@ file = sys.argv[1]
 X_test = pd.read_csv(file)
 X_test = X_test.dropna(axis=0)
 
+# Read-in the threshold value
+try:
+    threshold = float(sys.argv[2])
+except IndexError:
+    threshold = .5
+
+if (threshold < 0) or (threshold > 1):
+    raise ValueError('Your threshold is <0 or >1. Threshold only takes values between 0 and 1')
+
 # Check and transform the data
 print('Sprawdzam strukturę danych...\n\n')
 
@@ -116,7 +125,7 @@ print('Faza 1 predykcji: sukces!\n\n')
 
 # Build an ensemble prediction
 meta_proba = (gbc_proba + svc_proba) / 2
-meta_pred = meta_proba[:,1] > .4
+meta_pred = meta_proba[:,1] > threshold
 meta_pred = [1 if x==True else 0 for x in meta_pred]
 print('Faza 2 predykcji: sukces!\n\n')
 
